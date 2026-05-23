@@ -264,7 +264,7 @@ export default function DossierMedicalPage() {
         {premium && (
           <button
             onClick={exporterDossierPDF}
-            className='flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-600 hover:border-blue-400 hover:text-blue-600 dark:border-gray-600 dark:text-gray-400 dark:hover:border-blue-500 dark:hover:text-blue-400'
+            className='flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-600 hover:border-cyan-400 hover:text-cyan-600 dark:border-gray-600 dark:text-gray-400 dark:hover:border-cyan-500 dark:hover:text-cyan-400'
           >
             <Download className='h-4 w-4' />
             {t('export_pdf')}
@@ -278,7 +278,7 @@ export default function DossierMedicalPage() {
           onClick={() => { setEnfantId(null); setAjoutEnfantVisible(false) }}
           className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
             enfantId === null && !ajoutEnfantVisible
-              ? 'bg-blue-600 text-white'
+              ? 'bg-cyan-600 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
           }`}
         >
@@ -290,7 +290,7 @@ export default function DossierMedicalPage() {
               onClick={() => { setEnfantId(e.id); setAjoutEnfantVisible(false) }}
               className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                 enfantId === e.id
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-cyan-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
               }`}
             >
@@ -311,7 +311,7 @@ export default function DossierMedicalPage() {
         {!ajoutEnfantVisible && (
           <button
             onClick={() => setAjoutEnfantVisible(true)}
-            className='flex items-center gap-1 rounded-full border border-dashed border-gray-300 px-3 py-1.5 text-sm text-gray-500 hover:border-blue-400 hover:text-blue-600 dark:border-gray-600 dark:text-gray-400 dark:hover:border-blue-500 dark:hover:text-blue-400'
+            className='flex items-center gap-1 rounded-full border border-dashed border-gray-300 px-3 py-1.5 text-sm text-gray-500 hover:border-cyan-400 hover:text-cyan-600 dark:border-gray-600 dark:text-gray-400 dark:hover:border-cyan-500 dark:hover:text-cyan-400'
           >
             <svg className='h-3.5 w-3.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 4v16m8-8H4' />
@@ -329,12 +329,12 @@ export default function DossierMedicalPage() {
               placeholder={tc('firstname')}
               maxLength={50}
               autoFocus
-              className='rounded-full border border-blue-400 px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-blue-500 dark:bg-gray-700 dark:text-white'
+              className='rounded-full border border-cyan-400 px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-cyan-500 dark:border-cyan-500 dark:bg-gray-700 dark:text-white'
             />
             <button
               type='submit'
               disabled={ajoutEnCours || !prenomNouvelEnfant.trim()}
-              className='rounded-full bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50'
+              className='rounded-full bg-cyan-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-cyan-700 disabled:opacity-50'
             >
               {ajoutEnCours ? '...' : tc('add')}
             </button>
@@ -454,7 +454,7 @@ function SectionProfilUtilisateur({ user }: { user: any }) {
         {!enEdition && (
           <button
             onClick={() => setEnEdition(true)}
-            className='text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400'
+            className='text-xs font-medium text-cyan-600 hover:text-cyan-700 dark:text-cyan-400'
           >
             {tc('edit')}
           </button>
@@ -482,7 +482,7 @@ function SectionProfilUtilisateur({ user }: { user: any }) {
                   onClick={() => setSexe(s)}
                   className={`flex-1 rounded-lg border px-3 py-2 text-sm font-medium capitalize transition-colors ${
                     sexe === s
-                      ? 'border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                      ? 'border-cyan-500 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300'
                       : 'border-gray-300 text-gray-600 hover:border-gray-400 dark:border-gray-600 dark:text-gray-400'
                   }`}
                 >
@@ -517,7 +517,7 @@ function SectionProfilUtilisateur({ user }: { user: any }) {
                   onClick={() => setGroupeSanguin(groupeSanguin === g ? '' : g)}
                   className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors ${
                     groupeSanguin === g
-                      ? 'border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                      ? 'border-cyan-500 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300'
                       : 'border-gray-300 text-gray-600 hover:border-gray-400 dark:border-gray-600 dark:text-gray-400'
                   }`}
                 >
@@ -536,7 +536,7 @@ function SectionProfilUtilisateur({ user }: { user: any }) {
             <button type='button' onClick={() => { setEnEdition(false); setErreur(null) }} className='flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300'>
               {tc('cancel')}
             </button>
-            <button type='submit' disabled={enCours} className='flex-1 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-60'>
+            <button type='submit' disabled={enCours} className='flex-1 rounded-lg bg-cyan-600 px-4 py-2 text-sm font-semibold text-white hover:bg-cyan-700 disabled:opacity-60'>
               {enCours ? tc('saving') : tc('save')}
             </button>
           </div>
@@ -609,7 +609,7 @@ function SectionProfilEnfant({
         {!enEdition && (
           <button
             onClick={() => setEnEdition(true)}
-            className='text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400'
+            className='text-xs font-medium text-cyan-600 hover:text-cyan-700 dark:text-cyan-400'
           >
             {tc('edit')}
           </button>
@@ -637,7 +637,7 @@ function SectionProfilEnfant({
                   onClick={() => setSexe(s)}
                   className={`flex-1 rounded-lg border px-3 py-2 text-sm font-medium capitalize transition-colors ${
                     sexe === s
-                      ? 'border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                      ? 'border-cyan-500 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300'
                       : 'border-gray-300 text-gray-600 hover:border-gray-400 dark:border-gray-600 dark:text-gray-400'
                   }`}
                 >
@@ -672,7 +672,7 @@ function SectionProfilEnfant({
                   onClick={() => setGroupeSanguin(groupeSanguin === g ? '' : g)}
                   className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors ${
                     groupeSanguin === g
-                      ? 'border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                      ? 'border-cyan-500 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300'
                       : 'border-gray-300 text-gray-600 hover:border-gray-400 dark:border-gray-600 dark:text-gray-400'
                   }`}
                 >
@@ -691,7 +691,7 @@ function SectionProfilEnfant({
             <button type='button' onClick={() => { setEnEdition(false); setErreur(null) }} className='flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300'>
               {tc('cancel')}
             </button>
-            <button type='submit' disabled={enCours} className='flex-1 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-60'>
+            <button type='submit' disabled={enCours} className='flex-1 rounded-lg bg-cyan-600 px-4 py-2 text-sm font-semibold text-white hover:bg-cyan-700 disabled:opacity-60'>
               {enCours ? tc('saving') : tc('save')}
             </button>
           </div>
@@ -732,7 +732,7 @@ function Section({
         <div className='flex items-center gap-3'>
           <h2 className='text-sm font-semibold text-gray-900 dark:text-white'>{titre}</h2>
           {count > 0 && (
-            <span className='rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-900 dark:text-blue-300'>
+            <span className='rounded-full bg-cyan-100 px-2 py-0.5 text-xs font-medium text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300'>
               {count}
             </span>
           )}
@@ -868,7 +868,7 @@ function FormulaireAllergie({
   }
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20'>
+    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-800 dark:bg-cyan-900/20'>
       <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
         <div>
           <label className='mb-1 block text-xs font-medium text-gray-700 dark:text-gray-300'>{t('allergen')}</label>
@@ -1003,7 +1003,7 @@ function FormulaireTraitement({
   }
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20'>
+    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-800 dark:bg-cyan-900/20'>
       <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
         <div>
           <label className='mb-1 block text-xs font-medium text-gray-700 dark:text-gray-300'>{t('medication_name')}</label>
@@ -1140,7 +1140,7 @@ function FormulaireAntecedent({
   }
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20'>
+    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-800 dark:bg-cyan-900/20'>
       <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
         <div>
           <label className='mb-1 block text-xs font-medium text-gray-700 dark:text-gray-300'>{t('category')}</label>
@@ -1259,7 +1259,7 @@ function FormulaireAntecedentFamilial({
   }
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20'>
+    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-800 dark:bg-cyan-900/20'>
       <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
         <div>
           <label className='mb-1 block text-xs font-medium text-gray-700 dark:text-gray-300'>{t('family_member')}</label>
@@ -1379,7 +1379,7 @@ function FormulaireVaccination({
   }
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20'>
+    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-800 dark:bg-cyan-900/20'>
       <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
         <div>
           <label className='mb-1 block text-xs font-medium text-gray-700 dark:text-gray-300'>{t('vaccine_name')}</label>
@@ -1435,7 +1435,7 @@ function BoutonAjouter({ onClick, label }: { onClick: () => void; label: string 
   return (
     <button
       onClick={onClick}
-      className='flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'
+      className='flex items-center gap-1.5 text-sm text-cyan-600 hover:text-cyan-800 dark:text-cyan-400 dark:hover:text-cyan-300'
     >
       <svg className='h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 4v16m8-8H4' />
@@ -1452,7 +1452,7 @@ function BoutonsSauvegarderAnnuler({ enCours, onCancel }: { enCours: boolean; on
       <button
         type='submit'
         disabled={enCours}
-        className='rounded-lg bg-blue-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50'
+        className='rounded-lg bg-cyan-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-cyan-700 disabled:opacity-50'
       >
         {enCours ? t('saving') : t('save')}
       </button>
@@ -1467,4 +1467,4 @@ function BoutonsSauvegarderAnnuler({ enCours, onCancel }: { enCours: boolean; on
   )
 }
 
-const inputClass = 'w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
+const inputClass = 'w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-900 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'

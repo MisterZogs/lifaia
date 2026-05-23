@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useQuery } from 'wasp/client/operations'
 import i18n from '../client/i18n'
 import { getRappels, getEnfants, ajouterRappel, modifierRappel, supprimerRappel, marquerRappelFait, abonnerNotificationsPush, desabonnerNotificationsPush } from 'wasp/client/operations'
+import { Badge } from '../client/components/ui/badge'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -45,11 +46,18 @@ function statutRappel(date: Date): 'retard' | 'aujourdhui' | 'proche' | 'planifi
   return 'planifie'
 }
 
-const BADGES: Record<string, string> = {
-  retard: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300',
+const BADGE_VARIANT: Record<string, 'destructive' | 'warning' | 'secondary' | 'outline'> = {
+  retard: 'destructive',
+  aujourdhui: 'warning',
+  proche: 'warning',
+  planifie: 'secondary',
+}
+
+const BADGE_CLASS: Record<string, string> = {
+  retard: '',
   aujourdhui: 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300',
-  proche: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300',
-  planifie: 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400',
+  proche: '',
+  planifie: '',
 }
 
 function dateVersInput(d: Date | null | undefined): string {
@@ -190,9 +198,9 @@ export default function RappelsPage() {
         <div className='flex items-center gap-3'>
           <h1 className='text-2xl font-bold text-gray-900 dark:text-white'>{t('title')}</h1>
           {nbEnRetard > 0 && (
-            <span className='rounded-full bg-red-100 px-2.5 py-1 text-xs font-semibold text-red-700 dark:bg-red-900/40 dark:text-red-300'>
+            <Badge variant='destructive'>
               {nbEnRetard} {t('late')}
-            </span>
+            </Badge>
           )}
         </div>
         <button
@@ -210,7 +218,7 @@ export default function RappelsPage() {
             onClick={() => setEnfantId(null)}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
               enfantId === null
-                ? 'bg-blue-600 text-white'
+                ? 'bg-cyan-600 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200'
             }`}
           >
@@ -222,7 +230,7 @@ export default function RappelsPage() {
               onClick={() => setEnfantId(e.id)}
               className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                 enfantId === e.id
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-cyan-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200'
               }`}
             >
@@ -252,7 +260,7 @@ export default function RappelsPage() {
                 className={`rounded-lg px-4 py-1.5 text-sm font-medium transition-colors ${
                   pushActif
                     ? 'border border-gray-300 text-gray-600 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-cyan-600 text-white hover:bg-cyan-700'
                 }`}
               >
                 {pushActif ? t('push_disable') : t('push_enable')}
@@ -303,9 +311,9 @@ function SectionRappels({
           <span className='text-lg'>{ICONES_TYPE[type]}</span>
           <h2 className='text-sm font-semibold text-gray-900 dark:text-white'>{typeLabel}s</h2>
           {items.length > 0 && (
-            <span className='rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-900 dark:text-blue-300'>
+            <Badge variant='default' className='text-xs'>
               {items.length}
-            </span>
+            </Badge>
           )}
         </div>
         <svg
@@ -355,7 +363,7 @@ function SectionRappels({
           {!ajout && !edition && (
             <button
               onClick={() => setAjout(true)}
-              className='flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'
+              className='flex items-center gap-1.5 text-sm text-cyan-600 hover:text-cyan-800 dark:text-cyan-400 dark:hover:text-cyan-300'
             >
               <svg className='h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 4v16m8-8H4' />
@@ -391,14 +399,14 @@ function CarteRappel({
         <div className='flex items-center gap-2 flex-wrap'>
           <span className='text-sm font-medium text-gray-900 dark:text-white'>{rappel.titre}</span>
           {rappel.actif && (
-            <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${BADGES[statut]}`}>
+            <Badge variant={BADGE_VARIANT[statut]} className={BADGE_CLASS[statut]}>
               {t(`status_${statut}`)}
-            </span>
+            </Badge>
           )}
           {!rappel.actif && (
-            <span className='rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-400 dark:bg-gray-700'>
+            <Badge variant='secondary' className='text-gray-400'>
               {t('inactive')}
-            </span>
+            </Badge>
           )}
         </div>
         <div className='flex flex-wrap gap-3 text-xs text-gray-500 dark:text-gray-400'>
@@ -480,10 +488,10 @@ function FormulaireRappel({
     }
   }
 
-  const inputClass = 'w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
+  const inputClass = 'w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-900 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20'>
+    <form onSubmit={handleSubmit} className='space-y-3 rounded-lg border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-800 dark:bg-cyan-900/20'>
       <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
         <div className='sm:col-span-2'>
           <label className='mb-1 block text-xs font-medium text-gray-700 dark:text-gray-300'>{t('description_required')}</label>
@@ -540,7 +548,7 @@ function FormulaireRappel({
         <button
           type='submit'
           disabled={enCours}
-          className='rounded-lg bg-blue-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50'
+          className='rounded-lg bg-cyan-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-cyan-700 disabled:opacity-50'
         >
           {enCours ? tc('saving') : tc('save')}
         </button>

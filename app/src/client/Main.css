@@ -217,69 +217,70 @@
 }
 
 @layer base {
+  /* Healthcare palette — Calm Cyan #0891B2 + Health Green #059669 */
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --foreground: 196 80% 8%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --card-accent: 0 0% 100%;
-    --card-accent-foreground: 0 0% 3.9%;
-    --card-subtle: 31 57% 96%;
-    --card-subtle-foreground: 0 0% 9%;
+    --card-foreground: 196 80% 8%;
+    --card-accent: 186 80% 97%;
+    --card-accent-foreground: 196 80% 8%;
+    --card-subtle: 186 100% 97%;
+    --card-subtle-foreground: 196 60% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 210 100% 13%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 32 100% 37%;
-    --secondary-foreground: 0 0% 9%;
-    --secondary-muted: 32 75% 78%;
-    --secondary-muted-foreground: 0 0% 3.9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 33 74% 62%;
-    --accent-foreground: 0 0% 98%;
+    --popover-foreground: 196 80% 8%;
+    --primary: 196 91% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 162 94% 30%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-muted: 162 50% 68%;
+    --secondary-muted-foreground: 162 94% 15%;
+    --muted: 186 50% 95%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 162 94% 30%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --success: 141 71% 48%;
     --success-foreground: 0 0% 98%;
     --warning: 36 100% 50%;
     --warning-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 196 30% 88%;
+    --input: 196 30% 88%;
+    --ring: 196 91% 36%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 210 50% 5%;
+    --background: 196 70% 4%;
     --foreground: 0 0% 98%;
-    --card: 210 50% 5%;
+    --card: 196 60% 6%;
     --card-foreground: 0 0% 98%;
-    --card-accent: 31 57% 93%;
-    --card-accent-foreground: 0 0% 3.9%;
-    --card-subtle: 233 24% 15%;
+    --card-accent: 186 100% 97%;
+    --card-accent-foreground: 196 80% 8%;
+    --card-subtle: 196 40% 11%;
     --card-subtle-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
+    --popover: 196 60% 6%;
     --popover-foreground: 0 0% 98%;
-    --primary: 31 57% 93%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 209 91% 61%;
+    --primary: 188 84% 65%;
+    --primary-foreground: 196 80% 7%;
+    --secondary: 162 70% 45%;
     --secondary-foreground: 0 0% 98%;
-    --secondary-muted: 210 67% 94%;
-    --secondary-muted-foreground: 0 0% 3.9%;
-    --muted: 210 100% 13%;
+    --secondary-muted: 162 40% 75%;
+    --secondary-muted-foreground: 0 0% 10%;
+    --muted: 196 50% 12%;
     --muted-foreground: 0 0% 63.9%;
-    --accent: 31 57% 93%;
-    --accent-foreground: 210 100% 13%;
+    --accent: 188 84% 65%;
+    --accent-foreground: 196 80% 7%;
     --destructive: 0 62.8% 63%;
     --destructive-foreground: 0 0% 98%;
     --success: 141 71% 48%;
     --success-foreground: 0 0% 98%;
     --warning: 36 100% 50%;
     --warning-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --border: 196 30% 14%;
+    --input: 196 30% 14%;
+    --ring: 188 84% 65%;
   }
 }
 

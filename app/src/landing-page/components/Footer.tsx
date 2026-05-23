@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { Separator } from '../../client/components/ui/separator'
 
 interface NavigationItem {
   name: string;
@@ -18,9 +19,10 @@ export default function Footer({
 
   return (
     <div className="dark:bg-boxdark-2 mx-auto mt-6 max-w-7xl px-6 lg:px-8">
+      <Separator className="opacity-10" />
       <footer
         aria-labelledby="footer-heading"
-        className="relative border-t border-gray-900/10 py-24 sm:mt-32 dark:border-gray-200/10"
+        className="relative py-24 sm:mt-32"
       >
         <h2 id="footer-heading" className="sr-only">
           Footer

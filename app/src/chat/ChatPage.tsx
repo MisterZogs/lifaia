@@ -257,7 +257,7 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
                 {t('new_conversation')}
               </button>
             )}
-            <span className='rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 dark:bg-blue-900 dark:text-blue-300'>
+            <span className='rounded-full bg-cyan-100 px-2 py-1 text-xs font-medium text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300'>
               {t('header_badge')}
             </span>
           </div>
@@ -276,7 +276,7 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
                   onClick={() => setOngletActif(onglet.id)}
                   className={`flex items-center gap-1.5 border-b-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
                     ongletActif === onglet.id
-                      ? 'border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400'
+                      ? 'border-cyan-600 text-cyan-600 dark:border-cyan-400 dark:text-cyan-400'
                       : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
                   }`}
                 >
@@ -312,7 +312,7 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
                 onClick={() => setContexteEnfantId(null)}
                 className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                   contexteEnfantId === null
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-cyan-600 text-white'
                     : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300'
                 }`}
               >
@@ -324,7 +324,7 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
                   onClick={() => setContexteEnfantId(enfant.id)}
                   className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                     contexteEnfantId === enfant.id
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-cyan-600 text-white'
                       : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300'
                   }`}
                 >
@@ -364,8 +364,8 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
           )}
 
           {messages.length === 0 && !enCours && (
-            <div className='rounded-xl border border-blue-100 bg-blue-50 p-4 text-center dark:border-blue-900 dark:bg-blue-900/20'>
-              <p className='text-sm text-blue-700 dark:text-blue-300'>
+            <div className='rounded-xl border border-cyan-100 bg-cyan-50 p-4 text-center dark:border-cyan-900 dark:bg-cyan-900/20'>
+              <p className='text-sm text-cyan-700 dark:text-cyan-300'>
                 {ongletConfig.icone} <strong>{ongletConfig.label}</strong>
                 <br />
                 {t('empty_tab_line1', { label: ongletConfig.label })}
@@ -425,12 +425,12 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
             rows={2}
             maxLength={2000}
             disabled={enCours}
-            className='flex-1 resize-none rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:opacity-60 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'
+            className='flex-1 resize-none rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-60 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'
           />
           <button
             type='submit'
             disabled={!saisie.trim() || enCours}
-            className='rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+            className='rounded-xl bg-cyan-600 px-4 py-3 text-sm font-semibold text-white hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
           >
             {t('send')}
           </button>
@@ -461,7 +461,7 @@ function BulleMessage({ message }: { message: Message }) {
       <div
         className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm shadow-sm ${
           estUtilisateur
-            ? 'rounded-tr-sm bg-blue-600 text-white'
+            ? 'rounded-tr-sm bg-cyan-600 text-white'
             : 'rounded-tl-sm bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-100'
         }`}
       >

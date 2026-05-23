@@ -13,7 +13,7 @@ export default function MentionsLegalesPage() {
     <div className='min-h-screen bg-white dark:bg-gray-900'>
       <div className='mx-auto max-w-3xl px-6 py-16'>
         {t('french_only_notice') && (
-          <div className='mb-6 rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700 dark:border-blue-700 dark:bg-blue-900/30 dark:text-blue-300'>
+          <div className='mb-6 rounded-lg border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-700 dark:border-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300'>
             {t('french_only_notice')}
           </div>
         )}

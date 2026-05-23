@@ -134,7 +134,7 @@ function NavBarDesktopUserDropdown({ isScrolled }: { isScrolled: boolean }) {
         <select
           value={LANGS.find((l) => currentLang === l.code || currentLang?.startsWith(l.code))?.code ?? 'fr'}
           onChange={(e) => i18n.changeLanguage(e.target.value)}
-          className="text-xs font-medium rounded border border-gray-200 dark:border-gray-700 bg-transparent text-gray-600 dark:text-gray-300 px-1.5 py-0.5 cursor-pointer hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="text-xs font-medium rounded border border-gray-200 dark:border-gray-700 bg-transparent text-gray-600 dark:text-gray-300 px-1.5 py-0.5 cursor-pointer hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
         >
           {LANGS.map((l) => (
             <option key={l.code} value={l.code} className="bg-white dark:bg-gray-800">
@@ -248,7 +248,7 @@ function NavBarMobileMenu({
                 <select
                   value={LANGS.find((l) => currentLang === l.code || currentLang?.startsWith(l.code))?.code ?? 'fr'}
                   onChange={(e) => i18n.changeLanguage(e.target.value)}
-                  className="text-sm font-medium rounded border border-gray-200 dark:border-gray-700 bg-transparent text-gray-600 dark:text-gray-300 px-2 py-1 cursor-pointer focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="text-sm font-medium rounded border border-gray-200 dark:border-gray-700 bg-transparent text-gray-600 dark:text-gray-300 px-2 py-1 cursor-pointer focus:outline-none focus:ring-1 focus:ring-cyan-500"
                 >
                   {LANGS.map((l) => (
                     <option key={l.code} value={l.code} className="bg-white dark:bg-gray-800">

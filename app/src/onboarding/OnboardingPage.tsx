@@ -4,6 +4,8 @@ import { useAuth } from 'wasp/client/auth'
 import { useNavigate } from 'react-router'
 import { completerOnboarding, abonnerNotificationsPush, desabonnerNotificationsPush } from 'wasp/client/operations'
 import { Link as WaspRouterLink, routes } from 'wasp/client/router'
+import { Button } from '../client/components/ui/button'
+import { Alert, AlertDescription } from '../client/components/ui/alert'
 
 // Convertit une clé base64url en Uint8Array (requis par pushManager.subscribe)
 function urlBase64ToUint8Array(base64String: string): Uint8Array {
@@ -206,9 +208,9 @@ export default function OnboardingPage() {
           <div className='mb-4 flex items-center justify-between text-xs text-gray-400'>
             <span>{t('onboarding_step', { step: etape, total: 3 })}</span>
             <div className='flex gap-1'>
-              <div className={`h-1.5 w-10 rounded-full ${etape >= 1 ? 'bg-blue-500' : 'bg-gray-200'}`} />
-              <div className={`h-1.5 w-10 rounded-full ${etape >= 2 ? 'bg-blue-500' : 'bg-gray-200'}`} />
-              <div className={`h-1.5 w-10 rounded-full ${etape >= 3 ? 'bg-blue-500' : 'bg-gray-200'}`} />
+              <div className={`h-1.5 w-10 rounded-full ${etape >= 1 ? 'bg-cyan-500' : 'bg-gray-200'}`} />
+              <div className={`h-1.5 w-10 rounded-full ${etape >= 2 ? 'bg-cyan-500' : 'bg-gray-200'}`} />
+              <div className={`h-1.5 w-10 rounded-full ${etape >= 3 ? 'bg-cyan-500' : 'bg-gray-200'}`} />
             </div>
           </div>
           <h1 className='text-2xl font-bold text-gray-900 dark:text-white'>
@@ -234,7 +236,7 @@ export default function OnboardingPage() {
                 id='pays'
                 value={pays}
                 onChange={(e) => setPays(e.target.value)}
-                className='w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
+                className='w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
               >
                 {PAYS_SUPPORTES.map((p) => (
                   <option key={p.code} value={p.code}>{p.label}</option>
@@ -258,7 +260,7 @@ export default function OnboardingPage() {
                     onClick={() => setSexe(s)}
                     className={`flex-1 rounded-lg border px-3 py-2 text-sm font-medium capitalize transition-colors ${
                       sexe === s
-                        ? 'border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                        ? 'border-cyan-500 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300'
                         : 'border-gray-300 text-gray-600 hover:border-gray-400 dark:border-gray-600 dark:text-gray-400'
                     }`}
                   >
@@ -279,7 +281,7 @@ export default function OnboardingPage() {
                 value={dateNaissance}
                 onChange={(e) => setDateNaissance(e.target.value)}
                 max={new Date().toISOString().split('T')[0]}
-                className='w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
+                className='w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
               />
             </div>
 
@@ -297,7 +299,7 @@ export default function OnboardingPage() {
                   placeholder='170'
                   min={50}
                   max={250}
-                  className='w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
+                  className='w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
                 />
               </div>
               <div>
@@ -313,23 +315,20 @@ export default function OnboardingPage() {
                   min={2}
                   max={500}
                   step='0.1'
-                  className='w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
+                  className='w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white'
                 />
               </div>
             </div>
 
             {erreur && (
-              <div className='rounded-md bg-red-50 p-3 dark:bg-red-900/30'>
-                <p className='text-sm text-red-600 dark:text-red-400'>{erreur}</p>
-              </div>
+              <Alert variant='destructive'>
+                <AlertDescription>{erreur}</AlertDescription>
+              </Alert>
             )}
 
-            <button
-              type='submit'
-              className='w-full rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
-            >
+            <Button type='submit' className='w-full py-3'>
               {t('onboarding_continue')}
-            </button>
+            </Button>
           </form>
         )}
 
@@ -364,7 +363,7 @@ export default function OnboardingPage() {
                   type='checkbox'
                   checked={cgAcceptee}
                   onChange={(e) => setCgAcceptee(e.target.checked)}
-                  className='mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500'
+                  className='mt-0.5 h-4 w-4 rounded border-gray-300 text-cyan-600 focus:ring-cyan-500'
                 />
                 <span className='text-sm text-gray-700 dark:text-gray-300'>
                   {t('onboarding_cgu_check')}{' '}
@@ -372,7 +371,7 @@ export default function OnboardingPage() {
                     to={routes.CguRoute.to}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='font-medium text-blue-600 underline hover:text-blue-800 dark:text-blue-400'
+                    className='font-medium text-cyan-600 underline hover:text-cyan-800 dark:text-cyan-400'
                   >
                     {t('onboarding_cgu_link')}
                   </WaspRouterLink>{' '}
@@ -381,7 +380,7 @@ export default function OnboardingPage() {
                     to={routes.MentionsLegalesRoute.to}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='font-medium text-blue-600 underline hover:text-blue-800 dark:text-blue-400'
+                    className='font-medium text-cyan-600 underline hover:text-cyan-800 dark:text-cyan-400'
                   >
                     {t('onboarding_privacy_link')}
                   </WaspRouterLink>
@@ -391,25 +390,23 @@ export default function OnboardingPage() {
             </div>
 
             {erreur && (
-              <div className='rounded-md bg-red-50 p-3 dark:bg-red-900/30'>
-                <p className='text-sm text-red-600 dark:text-red-400'>{erreur}</p>
-              </div>
+              <Alert variant='destructive'>
+                <AlertDescription>{erreur}</AlertDescription>
+              </Alert>
             )}
 
             <div className='flex gap-3'>
-              <button
+              <Button
                 type='button'
+                variant='outline'
+                className='flex-1 py-3'
                 onClick={() => { setEtape(1); setErreur(null) }}
-                className='flex-1 rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700'
               >
                 {t('onboarding_back')}
-              </button>
-              <button
-                type='submit'
-                className='flex-1 rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
-              >
+              </Button>
+              <Button type='submit' className='flex-1 py-3'>
                 {t('onboarding_continue')}
-              </button>
+              </Button>
             </div>
           </form>
         )}
@@ -428,7 +425,7 @@ export default function OnboardingPage() {
                 type='button'
                 onClick={() => setEmailNotifActif(!emailNotifActif)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  emailNotifActif ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-600'
+                  emailNotifActif ? 'bg-cyan-600' : 'bg-gray-200 dark:bg-gray-600'
                 }`}
                 role='switch'
                 aria-checked={emailNotifActif}
@@ -459,7 +456,7 @@ export default function OnboardingPage() {
                     type='button'
                     onClick={pushActif ? desactiverPushOnboarding : activerPushOnboarding}
                     className={`relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full transition-colors ${
-                      pushActif ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-600'
+                      pushActif ? 'bg-cyan-600' : 'bg-gray-200 dark:bg-gray-600'
                     }`}
                     role='switch'
                     aria-checked={pushActif}
@@ -475,26 +472,23 @@ export default function OnboardingPage() {
             )}
 
             {erreur && (
-              <div className='rounded-md bg-red-50 p-3 dark:bg-red-900/30'>
-                <p className='text-sm text-red-600 dark:text-red-400'>{erreur}</p>
-              </div>
+              <Alert variant='destructive'>
+                <AlertDescription>{erreur}</AlertDescription>
+              </Alert>
             )}
 
             <div className='flex gap-3'>
-              <button
+              <Button
                 type='button'
+                variant='outline'
+                className='flex-1 py-3'
                 onClick={() => { setEtape(2); setErreur(null) }}
-                className='flex-1 rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700'
               >
                 {t('onboarding_back')}
-              </button>
-              <button
-                type='submit'
-                disabled={enCours}
-                className='flex-1 rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-60'
-              >
+              </Button>
+              <Button type='submit' disabled={enCours} className='flex-1 py-3'>
                 {enCours ? tc('saving') : t('onboarding_finish')}
-              </button>
+              </Button>
             </div>
           </form>
         )}

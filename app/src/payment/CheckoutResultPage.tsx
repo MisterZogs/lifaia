@@ -58,7 +58,7 @@ export default function CheckoutResultPage() {
         <div className='mt-6 flex justify-center gap-4'>
           <WaspRouterLink
             to={routes.ChatRoute.to}
-            className='rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700'
+            className='rounded-lg bg-cyan-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-cyan-700'
           >
             {t('go_to_chat')}
           </WaspRouterLink>

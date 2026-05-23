@@ -5,6 +5,10 @@ import { useAuth } from 'wasp/client/auth'
 import { generateCheckoutSession, getCustomerPortalUrl, useQuery } from 'wasp/client/operations'
 import { PaymentPlanId, SubscriptionStatus } from './plans'
 import { LIMITE_MESSAGES_GRATUIT } from './freemium'
+import { Card, CardContent, CardHeader } from '../client/components/ui/card'
+import { Button } from '../client/components/ui/button'
+import { Alert, AlertDescription } from '../client/components/ui/alert'
+import { Badge } from '../client/components/ui/badge'
 
 export default function PricingPage() {
   const [enCours, setEnCours] = useState<PaymentPlanId | null>(null)
@@ -62,110 +66,122 @@ export default function PricingPage() {
       </div>
 
       {erreur && (
-        <div className='mb-8 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-center text-sm text-red-600 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400'>
-          {erreur}
-        </div>
+        <Alert variant='destructive' className='mb-8'>
+          <AlertDescription className='text-center'>{erreur}</AlertDescription>
+        </Alert>
       )}
 
       <div className='grid grid-cols-1 gap-6 lg:grid-cols-3'>
         {/* Plan Gratuit */}
-        <div className='rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-gray-800'>
-          <div className='mb-6'>
+        <Card className='border-gray-200 dark:border-gray-700'>
+          <CardHeader className='pb-0'>
             <h2 className='text-xl font-semibold text-gray-900 dark:text-white'>{t('free_title')}</h2>
-            <p className='mt-1 text-sm text-gray-500 dark:text-gray-400'>{t('free_subtitle')}</p>
-            <div className='mt-4 flex items-baseline gap-1'>
+            <p className='text-sm text-gray-500 dark:text-gray-400'>{t('free_subtitle')}</p>
+            <div className='mt-2 flex items-baseline gap-1'>
               <span className='text-4xl font-bold text-gray-900 dark:text-white'>0 €</span>
               <span className='text-sm text-gray-500 dark:text-gray-400'>{t('free_per_month')}</span>
             </div>
-          </div>
-          <ul className='mb-8 space-y-3'>
-            {featuresGratuitFinal.map((f) => (
-              <li key={f} className='flex items-start gap-3 text-sm text-gray-600 dark:text-gray-300'>
-                <svg className='mt-0.5 h-4 w-4 shrink-0 text-gray-400' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
-                </svg>
-                {f}
-              </li>
-            ))}
-          </ul>
-          {user ? (
-            <button onClick={() => navigate('/chat')} className='w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'>
-              {t('free_current_plan')}
-            </button>
-          ) : (
-            <button onClick={() => navigate('/signup')} className='w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700'>
-              {t('signup_cta')}
-            </button>
-          )}
-        </div>
+          </CardHeader>
+          <CardContent className='pt-6'>
+            <ul className='mb-8 space-y-3'>
+              {featuresGratuitFinal.map((f) => (
+                <li key={f} className='flex items-start gap-3 text-sm text-gray-600 dark:text-gray-300'>
+                  <svg className='mt-0.5 h-4 w-4 shrink-0 text-gray-400' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            {user ? (
+              <Button variant='outline' className='w-full' onClick={() => navigate('/chat')}>
+                {t('free_current_plan')}
+              </Button>
+            ) : (
+              <Button className='w-full' onClick={() => navigate('/signup')}>
+                {t('signup_cta')}
+              </Button>
+            )}
+          </CardContent>
+        </Card>
 
         {/* Plan Premium mensuel */}
-        <div className='rounded-2xl border border-blue-200 bg-white p-8 dark:border-blue-900 dark:bg-gray-800'>
-          <div className='mb-6'>
+        <Card className='border-cyan-200 dark:border-cyan-900'>
+          <CardHeader className='pb-0'>
             <h2 className='text-xl font-semibold text-gray-900 dark:text-white'>{t('premium_title')}</h2>
-            <p className='mt-1 text-sm text-gray-500 dark:text-gray-400'>{t('premium_subtitle')}</p>
-            <div className='mt-4 flex items-baseline gap-1'>
+            <p className='text-sm text-gray-500 dark:text-gray-400'>{t('premium_subtitle')}</p>
+            <div className='mt-2 flex items-baseline gap-1'>
               <span className='text-4xl font-bold text-gray-900 dark:text-white'>7,99 €</span>
               <span className='text-sm text-gray-500 dark:text-gray-400'>{t('premium_per_month')}</span>
             </div>
-          </div>
-          <ul className='mb-8 space-y-3'>
-            {featuresPremium.map((f) => (
-              <li key={f} className='flex items-start gap-3 text-sm text-gray-700 dark:text-gray-200'>
-                <svg className='mt-0.5 h-4 w-4 shrink-0 text-blue-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
-                </svg>
-                {f}
-              </li>
-            ))}
-          </ul>
-          {isPremium ? (
-            <button onClick={handleGererAbonnement} className='w-full rounded-xl border border-blue-300 bg-blue-50 px-4 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-100 dark:border-blue-700 dark:bg-blue-900/30 dark:text-blue-300'>
-              {t('manage_subscription')}
-            </button>
-          ) : (
-            <button onClick={() => handleSouscrire(PaymentPlanId.Premium)} disabled={enCours !== null} className='w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-60'>
-              {enCours === PaymentPlanId.Premium ? t('redirecting') : user ? t('choose_monthly') : t('signup_cta')}
-            </button>
-          )}
-        </div>
+          </CardHeader>
+          <CardContent className='pt-6'>
+            <ul className='mb-8 space-y-3'>
+              {featuresPremium.map((f) => (
+                <li key={f} className='flex items-start gap-3 text-sm text-gray-700 dark:text-gray-200'>
+                  <svg className='mt-0.5 h-4 w-4 shrink-0 text-cyan-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            {isPremium ? (
+              <Button
+                variant='outline'
+                className='w-full border-cyan-300 text-cyan-700 hover:bg-cyan-50 dark:border-cyan-700 dark:text-cyan-300 dark:hover:bg-cyan-900/30'
+                onClick={handleGererAbonnement}
+              >
+                {t('manage_subscription')}
+              </Button>
+            ) : (
+              <Button className='w-full' onClick={() => handleSouscrire(PaymentPlanId.Premium)} disabled={enCours !== null}>
+                {enCours === PaymentPlanId.Premium ? t('redirecting') : user ? t('choose_monthly') : t('signup_cta')}
+              </Button>
+            )}
+          </CardContent>
+        </Card>
 
-        {/* Plan Premium annuel */}
-        <div className='relative rounded-2xl border-2 border-blue-500 bg-white p-8 dark:bg-gray-800'>
-          <div className='absolute -top-3 left-1/2 -translate-x-1/2'>
-            <span className='rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white'>
-              {t('premium_badge')}
-            </span>
+        {/* Plan Premium annuel — recommandé */}
+        <Card className='relative border-2 border-cyan-500'>
+          <div className='absolute -top-3.5 left-1/2 -translate-x-1/2'>
+            <Badge>{t('premium_badge')}</Badge>
           </div>
-          <div className='mb-6'>
+          <CardHeader className='pb-0'>
             <h2 className='text-xl font-semibold text-gray-900 dark:text-white'>{t('premium_annual_title')}</h2>
-            <p className='mt-1 text-sm text-gray-500 dark:text-gray-400'>{t('premium_annual_subtitle')}</p>
-            <div className='mt-4 flex items-baseline gap-1'>
+            <p className='text-sm text-gray-500 dark:text-gray-400'>{t('premium_annual_subtitle')}</p>
+            <div className='mt-2 flex items-baseline gap-1'>
               <span className='text-4xl font-bold text-gray-900 dark:text-white'>79,99 €</span>
               <span className='text-sm text-gray-500 dark:text-gray-400'>{t('premium_annual_per_year')}</span>
             </div>
-            <p className='mt-1 text-xs text-green-600 dark:text-green-400 font-medium'>{t('premium_annual_savings')}</p>
-          </div>
-          <ul className='mb-8 space-y-3'>
-            {featuresPremium.map((f) => (
-              <li key={f} className='flex items-start gap-3 text-sm text-gray-700 dark:text-gray-200'>
-                <svg className='mt-0.5 h-4 w-4 shrink-0 text-blue-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
-                </svg>
-                {f}
-              </li>
-            ))}
-          </ul>
-          {isPremium ? (
-            <button onClick={handleGererAbonnement} className='w-full rounded-xl border border-blue-300 bg-blue-50 px-4 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-100 dark:border-blue-700 dark:bg-blue-900/30 dark:text-blue-300'>
-              {t('manage_subscription')}
-            </button>
-          ) : (
-            <button onClick={() => handleSouscrire(PaymentPlanId.PremiumAnnuel)} disabled={enCours !== null} className='w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-60'>
-              {enCours === PaymentPlanId.PremiumAnnuel ? t('redirecting') : user ? t('choose_annual') : t('signup_cta')}
-            </button>
-          )}
-        </div>
+            <p className='text-xs font-medium text-green-600 dark:text-green-400'>{t('premium_annual_savings')}</p>
+          </CardHeader>
+          <CardContent className='pt-6'>
+            <ul className='mb-8 space-y-3'>
+              {featuresPremium.map((f) => (
+                <li key={f} className='flex items-start gap-3 text-sm text-gray-700 dark:text-gray-200'>
+                  <svg className='mt-0.5 h-4 w-4 shrink-0 text-cyan-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            {isPremium ? (
+              <Button
+                variant='outline'
+                className='w-full border-cyan-300 text-cyan-700 hover:bg-cyan-50 dark:border-cyan-700 dark:text-cyan-300 dark:hover:bg-cyan-900/30'
+                onClick={handleGererAbonnement}
+              >
+                {t('manage_subscription')}
+              </Button>
+            ) : (
+              <Button className='w-full' onClick={() => handleSouscrire(PaymentPlanId.PremiumAnnuel)} disabled={enCours !== null}>
+                {enCours === PaymentPlanId.PremiumAnnuel ? t('redirecting') : user ? t('choose_annual') : t('signup_cta')}
+              </Button>
+            )}
+          </CardContent>
+        </Card>
       </div>
 
       <p className='mt-10 text-center text-xs text-gray-400 dark:text-gray-500'>
