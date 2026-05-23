@@ -1,0 +1,325 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                        String          @id @default(uuid())
+  createdAt                 DateTime        @default(now())
+
+  email                     String?         @unique
+  username                  String?         @unique
+  isAdmin                   Boolean         @default(false)
+
+  paymentProcessorUserId    String?         @unique
+  lemonSqueezyCustomerPortalUrl String?
+  subscriptionStatus        String?         // 'active', 'cancel_at_period_end', 'past_due', 'deleted'
+  subscriptionPlan          String?         // 'hobby', 'pro'
+  datePaid                  DateTime?
+  credits                   Int             @default(3)
+
+  // --- Profil patient MyDoctorIA ---
+  // Pays de résidence (code ISO 3166-1 alpha-2, ex: "FR", "US")
+  pays                      String?         @default("FR")
+  // Langue préférée (code BCP 47, ex: "fr-FR", "en-US")
+  langue                    String?         @default("fr-FR")
+  // Date d'acceptation des CGU (null = pas encore acceptées)
+  cgAccepteeAt              DateTime?
+  // Date d'acceptation du disclaimer médical (null = pas encore accepté)
+  disclaimerMedicalAccepteAt DateTime?
+  // Vrai une fois l'onboarding initial complété
+  onboardingTermine          Boolean         @default(false)
+
+  // --- Profil biologique (optionnel, enrichit les réponses IA) ---
+  // Sexe biologique : 'homme', 'femme', 'autre'
+  sexe                      String?
+  // Date de naissance (l'âge est calculé dynamiquement)
+  dateNaissance             DateTime?
+  // Taille en centimètres
+  tailleCm                  Int?
+  // Poids en kilogrammes
+  poidsKg                   Float?
+  // Groupe sanguin (ex: "A+", "O-", "AB+")
+  groupeSanguin             String?
+  // Médecin traitant (nom, pour contextualiser les réponses IA)
+  medecinTraitant           String?
+
+  contactFormMessages       ContactFormMessage[]
+  messagesChat              MessageChat[]
+  enfants                   Enfant[]
+  allergies                 Allergie[]
+  traitements               Traitement[]
+  antecedentsMedicaux       AntecedentMedical[]
+  antecedentsFamiliaux      AntecedentFamilial[]
+  vaccinations              Vaccination[]
+  rappels                   Rappel[]
+  pushSubscriptions         PushSubscription[]
+  resumConversation         ResumConversation?
+}
+
+// Profil d'un enfant rattaché au compte parent.
+// Permet de consulter l'IA dans le contexte pédiatrique de l'enfant.
+model Enfant {
+  id            String   @id @default(uuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Informations de l'enfant
+  prenom        String
+  // Sexe biologique : 'homme', 'femme', 'autre' — renseigné dans le dossier médical
+  sexe          String?
+  // Date de naissance — renseignée dans le dossier médical
+  dateNaissance DateTime?
+  // Taille en centimètres (optionnel)
+  tailleCm      Int?
+  // Poids en kilogrammes (optionnel)
+  poidsKg       Float?
+  // Groupe sanguin (ex: "A+", "O-")
+  groupeSanguin String?
+  // Pédiatre ou médecin référent de l'enfant
+  medecinRef    String?
+
+  // Relation au compte parent — supprimé en cascade si l'utilisateur est supprimé
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
+
+  allergies     Allergie[]
+  traitements   Traitement[]
+  antecedents   AntecedentMedical[]
+  vaccinations  Vaccination[]
+  rappels       Rappel[]
+}
+
+// Allergie d'un patient (utilisateur ou enfant)
+// severite : 'legere' | 'moderee' | 'severe' | 'anaphylaxie'
+// type : 'medicament' | 'aliment' | 'environnement' | 'autre'
+model Allergie {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  userId      String
+  enfantId    String?
+
+  nom         String
+  type        String
+  severite    String
+  notes       String?  @db.Text
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  enfant      Enfant?  @relation(fields: [enfantId], references: [id], onDelete: Cascade)
+}
+
+// Traitement médicamenteux en cours
+model Traitement {
+  id          String    @id @default(uuid())
+  createdAt   DateTime  @default(now())
+  userId      String
+  enfantId    String?
+
+  nom         String
+  dose        String?
+  frequence   String?
+  depuis      DateTime?
+  notes       String?   @db.Text
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  enfant      Enfant?   @relation(fields: [enfantId], references: [id], onDelete: Cascade)
+}
+
+// Antécédent médical personnel
+// categorie : 'maladie_chronique' | 'chirurgie' | 'hospitalisation' | 'implant_prothese' | 'autre'
+model AntecedentMedical {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  userId      String
+  enfantId    String?
+
+  categorie   String
+  description String   @db.Text
+  annee       Int?
+  notes       String?  @db.Text
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  enfant      Enfant?  @relation(fields: [enfantId], references: [id], onDelete: Cascade)
+}
+
+// Antécédent familial — toujours lié à l'utilisateur (pas aux enfants)
+// relation : 'pere' | 'mere' | 'frere_soeur' | 'grand_parent' | 'oncle_tante' | 'autre'
+model AntecedentFamilial {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  userId      String
+
+  relation    String
+  maladie     String
+  notes       String?  @db.Text
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Vaccination reçue
+model Vaccination {
+  id              String    @id @default(uuid())
+  createdAt       DateTime  @default(now())
+  userId          String
+  enfantId        String?
+
+  vaccin          String
+  dateDernierDose DateTime
+  prochainRappel  DateTime?
+  notes           String?   @db.Text
+
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  enfant          Enfant?   @relation(fields: [enfantId], references: [id], onDelete: Cascade)
+}
+
+// Abonnement aux notifications push (Web Push API)
+// Stocké par appareil/navigateur
+model PushSubscription {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  userId    String
+  // URL de l'endpoint du service push (unique par appareil)
+  endpoint  String   @unique
+  // Clés cryptographiques de la subscription Web Push
+  p256dh    String
+  auth      String
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Rappel médical — médicament, vaccin ou check-up
+// type : 'medicament' | 'vaccin' | 'checkup'
+// frequence : 'unique' | 'quotidien' | 'hebdomadaire' | 'mensuel' | 'annuel'
+model Rappel {
+  id              String    @id @default(uuid())
+  createdAt       DateTime  @default(now())
+  userId          String
+  enfantId        String?
+
+  type            String
+  titre           String
+  dateProchaine   DateTime
+  frequence       String    @default("unique")
+  // Heure de prise pour les médicaments (ex: "08:00", "20:30") — null pour vaccins/check-ups
+  heure           String?
+  actif           Boolean   @default(true)
+  notes           String?   @db.Text
+  // Date du dernier envoi de notification — évite les doublons
+  derniereNotifAt DateTime?
+
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  enfant          Enfant?   @relation(fields: [enfantId], references: [id], onDelete: Cascade)
+}
+
+// Historique des messages du chat médical.
+// Chaque message appartient à une session de conversation.
+// IMPORTANT sécurité : le contenu est chiffré au repos côté hébergeur HDS.
+model MessageChat {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id])
+  // L'userId est un identifiant interne — jamais le nom complet dans les prompts
+  userId      String
+
+  // 'user' = message du patient, 'assistant' = réponse de l'IA
+  role        String
+  // Contenu du message (texte brut)
+  contenu     String   @db.Text
+  // Onglet de médecine concerné ('moderne', 'chinoise', 'ayurvedique', etc.)
+  onglet      String   @default("moderne")
+  // Vrai si le système a détecté une urgence vitale dans ce message
+  urgenceDetectee Boolean @default(false)
+  // Modèle LLM utilisé pour cette réponse (pour audit)
+  modeleUtilise String?
+  // Latence de l'appel LLM en ms (pour monitoring — sans PII)
+  latenceMs   Int?
+}
+
+// Résumé cumulatif des conversations passées d'un patient.
+// Mis à jour automatiquement à chaque nouvelle session (gap > 2h).
+// Constitue la mémoire long terme de l'IA pour ce patient.
+model ResumConversation {
+  id                  String   @id @default(uuid())
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // Un seul résumé cumulatif par utilisateur
+  userId              String   @unique
+
+  // Résumé enrichi à chaque session — contient l'historique médical pertinent
+  resume              String   @db.Text
+  // Date du dernier message inclus dans ce résumé
+  derniereSessionAt   DateTime
+}
+
+model DailyStats {
+  id                               Int             @id @default(autoincrement())
+  date                             DateTime        @default(now()) @unique
+
+  totalViews                       Int             @default(0)
+  prevDayViewsChangePercent        String          @default("0")
+  userCount                        Int             @default(0)
+  paidUserCount                    Int             @default(0)
+  userDelta                        Int             @default(0)
+  paidUserDelta                    Int             @default(0)
+  totalRevenue                     Float           @default(0)
+  totalProfit                      Float           @default(0)
+
+  sources                          PageViewSource[]
+}
+
+model PageViewSource {
+  @@id([date, name])
+  name                     String
+  date                     DateTime        @default(now())
+
+  dailyStats               DailyStats?     @relation(fields: [dailyStatsId], references: [id])
+  dailyStatsId             Int?
+
+  visitors                 Int
+}
+
+model Logs {
+  id                       Int             @id @default(autoincrement())
+  createdAt                DateTime        @default(now())
+
+  message                  String
+  level                    String
+}
+
+model ContactFormMessage {
+  id                        String          @id @default(uuid())
+  createdAt                 DateTime        @default(now())
+
+  user                      User            @relation(fields: [userId], references: [id])
+  userId                    String
+
+  content                   String
+  isRead                    Boolean         @default(false)
+  repliedAt                 DateTime?
+}
+
+// Document de référence médicale pour le RAG
+// embedding stocké en JSON (array de floats 1024 dimensions, Mistral embed)
+// TODO prod : migrer vers pgvector pour les performances sur gros volumes
+model DocumentRAG {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  // Identifiant de la source (ex: "calendrier_vaccinal_fr", "has_recommandations")
+  source    String
+  // Titre de la section ou du chunk
+  titre     String
+  // Contenu textuel du chunk
+  contenu   String   @db.Text
+  // Embedding Mistral (1024 dimensions) stocké en JSON
+  embedding Json?
+
+  @@index([source])
+}

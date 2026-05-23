@@ -1,0 +1,6 @@
+node_modules/
+.wasp/out/
+.env.server
+.env.client
+*.local
+dist/

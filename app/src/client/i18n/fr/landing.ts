@@ -1,0 +1,50 @@
+const translations = {
+  "nav_features": "Fonctionnalités",
+  "nav_pricing": "Tarifs",
+  "nav_dossier": "Dossier médical",
+  "nav_rappels": "Rappels",
+  "badge": "Information santé · IA · France",
+  "hero_title_1": "Votre",
+  "hero_title_highlight": "assistant santé",
+  "hero_title_2": "personnel",
+  "hero_subtitle": "Décrivez vos symptômes en langage naturel. Obtenez des informations médicales personnalisées selon votre profil, votre pays et vos antécédents — en médecine moderne ou alternative.",
+  "hero_disclaimer": "Outil d'information uniquement — ne remplace pas un avis médical professionnel.",
+  "cta_start": "Commencer gratuitement →",
+  "cta_pricing": "Voir les offres",
+  "proof_free": "✓ Gratuit pour commencer",
+  "proof_no_card": "✓ Sans carte bancaire",
+  "proof_hosted": "✓ Données hébergées en France",
+  "features_title": "Tout ce dont vous avez besoin",
+  "features_subtitle": "Un assistant santé complet, sécurisé et adapté à votre profil.",
+  "faq_title": "Questions fréquentes",
+  "features": [
+    { "name": "Chat IA médical", "description": "Décrivez vos symptômes en langage naturel. L'IA pose des questions de clarification et adapte sa réponse à votre profil.", "emoji": "💬", "size": "large" },
+    { "name": "8 approches médicales", "description": "Médecine moderne, ostéopathie, phytothérapie, aromathérapie, naturopathie, homéopathie, nutrition, médecine chinoise.", "emoji": "🏥", "size": "medium" },
+    { "name": "Dossier médical", "description": "Antécédents, allergies, traitements en cours, groupe sanguin — tout en un seul endroit.", "emoji": "📋", "size": "medium" },
+    { "name": "Détection d'urgence", "description": "Signes d'AVC, douleur thoracique, pensées suicidaires → numéros d'urgence affichés immédiatement.", "emoji": "🚨", "size": "small" },
+    { "name": "Rappels & vaccins", "description": "Rappels médicaments, calendrier vaccinal et check-ups adaptés à votre âge et votre pays.", "emoji": "💊", "size": "small" },
+    { "name": "Sources officielles", "description": "Les réponses s'appuient sur des sources HAS, OMS et guides cliniques validés (RAG).", "emoji": "📚", "size": "medium" },
+    { "name": "Données sécurisées", "description": "Hébergement HDS en France. Chiffrement AES-256 au repos, TLS 1.3 en transit.", "emoji": "🔒", "size": "medium" },
+    { "name": "Profil personnalisé", "description": "Résultats adaptés à votre pays, langue, antécédents et traitements en cours.", "emoji": "👤", "size": "small" },
+    { "name": "Profils enfants", "description": "Gérez le suivi médical de toute la famille depuis un seul compte.", "emoji": "👨‍👩‍👧", "size": "small" }
+  ],
+  "faqs": [
+    { "id": 1, "question": "Lifaia remplace-t-il un médecin ?", "answer": "Non. Lifaia est un outil d'information médicale, pas un dispositif médical. Il ne pose pas de diagnostic, ne prescrit aucun médicament et ne remplace jamais l'avis d'un professionnel de santé. Chaque réponse vous invite à consulter un médecin." },
+    { "id": 2, "question": "Mes données de santé sont-elles protégées ?", "answer": "Oui. Les données de santé sont hébergées en France chez un hébergeur certifié HDS (Hébergeur de Données de Santé), chiffrées au repos (AES-256) et en transit (TLS 1.3). Aucune donnée n'est revendue ni utilisée pour entraîner des modèles." },
+    { "id": 3, "question": "Qu'est-ce que le plan gratuit inclut ?", "answer": "Le plan gratuit donne accès à 10 messages par jour, à l'onglet Médecine moderne, au dossier médical complet et aux rappels médicaments et vaccins. C'est suffisant pour tester l'application sans carte bancaire." },
+    { "id": 4, "question": "Que contient le plan Premium ?", "answer": "Messages illimités, accès aux 8 onglets de médecines (moderne, ostéopathie, phytothérapie, aromathérapie, naturopathie, homéopathie, nutrition, médecine chinoise), réponses enrichies par RAG sur sources officielles HAS/OMS, et support prioritaire." },
+    { "id": 5, "question": "Les médecines alternatives sont-elles présentées comme scientifiques ?", "answer": "Non. Chaque onglet de médecine alternative affiche un disclaimer sur le niveau de preuve scientifique de l'approche. L'homéopathie, par exemple, a été déremboursée en France en 2021 sur avis de la HAS — cette information est clairement indiquée." },
+    { "id": 6, "question": "Comment fonctionne la détection d'urgence ?", "answer": "Si vous décrivez des signes d'urgence vitale (douleur thoracique, essoufflement aigu, signes d'AVC, pensées suicidaires), le chat affiche immédiatement les numéros d'urgence de votre pays (15, 18, 112 en France) et vous demande d'appeler maintenant." }
+  ],
+  "footer_app_title": "Application",
+  "footer_company_title": "Légal",
+  "footer_chat": "Chat médical",
+  "footer_dossier": "Mon dossier médical",
+  "footer_rappels": "Rappels",
+  "footer_pricing": "Tarifs",
+  "footer_mentions": "Mentions légales",
+  "footer_cgu": "CGU",
+  "footer_privacy": "Politique de confidentialité"
+} as const
+
+export default translations

@@ -1,0 +1,50 @@
+const translations = {
+  "nav_features": "Features",
+  "nav_pricing": "Pricing",
+  "nav_dossier": "Medical record",
+  "nav_rappels": "Reminders",
+  "badge": "Health information · AI · Europe",
+  "hero_title_1": "Your personal",
+  "hero_title_highlight": "health assistant",
+  "hero_title_2": "",
+  "hero_subtitle": "Describe your symptoms in natural language. Get personalized medical information based on your profile, country, and medical history — in modern or alternative medicine.",
+  "hero_disclaimer": "For information only — does not replace professional medical advice.",
+  "cta_start": "Get started for free →",
+  "cta_pricing": "View plans",
+  "proof_free": "✓ Free to start",
+  "proof_no_card": "✓ No credit card required",
+  "proof_hosted": "✓ Data hosted in Europe",
+  "features_title": "Everything you need",
+  "features_subtitle": "A complete, secure health assistant tailored to your profile.",
+  "faq_title": "Frequently asked questions",
+  "features": [
+    { "name": "AI medical chat", "description": "Describe your symptoms in natural language. The AI asks clarifying questions and tailors its response to your profile.", "emoji": "💬", "size": "large" },
+    { "name": "8 medical approaches", "description": "Modern medicine, osteopathy, phytotherapy, aromatherapy, naturopathy, homeopathy, nutrition, Chinese medicine.", "emoji": "🏥", "size": "medium" },
+    { "name": "Medical records", "description": "Medical history, allergies, ongoing treatments, blood type — all in one place.", "emoji": "📋", "size": "medium" },
+    { "name": "Emergency detection", "description": "Stroke signs, chest pain, suicidal thoughts → emergency numbers displayed immediately.", "emoji": "🚨", "size": "small" },
+    { "name": "Reminders & vaccines", "description": "Medication reminders, vaccination schedule and check-ups tailored to your age and country.", "emoji": "💊", "size": "small" },
+    { "name": "Official sources", "description": "Responses are based on HAS, WHO sources and validated clinical guidelines (RAG).", "emoji": "📚", "size": "medium" },
+    { "name": "Secure data", "description": "HDS-certified hosting in France. AES-256 encryption at rest, TLS 1.3 in transit.", "emoji": "🔒", "size": "medium" },
+    { "name": "Personalized profile", "description": "Results tailored to your country, language, medical history and ongoing treatments.", "emoji": "👤", "size": "small" },
+    { "name": "Family profiles", "description": "Manage your whole family's medical follow-up from a single account.", "emoji": "👨‍👩‍👧", "size": "small" }
+  ],
+  "faqs": [
+    { "id": 1, "question": "Does Lifaia replace a doctor?", "answer": "No. Lifaia is a medical information tool, not a medical device. It does not diagnose, does not prescribe any medication, and never replaces the advice of a healthcare professional. Every response invites you to consult a doctor." },
+    { "id": 2, "question": "Is my health data protected?", "answer": "Yes. Health data is hosted in France at an HDS-certified (Health Data Host) provider, encrypted at rest (AES-256) and in transit (TLS 1.3). No data is resold or used to train models." },
+    { "id": 3, "question": "What does the free plan include?", "answer": "The free plan gives access to 10 messages per day, the Modern Medicine tab, complete medical records, and medication and vaccine reminders. Enough to test the app without a credit card." },
+    { "id": 4, "question": "What does the Premium plan include?", "answer": "Unlimited messages, access to all 8 medicine tabs (modern, osteopathy, phytotherapy, aromatherapy, naturopathy, homeopathy, nutrition, Chinese medicine), responses enriched by RAG on official HAS/WHO sources, and priority support." },
+    { "id": 5, "question": "Are alternative medicines presented as scientific?", "answer": "No. Each alternative medicine tab displays a disclaimer about the scientific evidence level of the approach. Homeopathy, for example, was delisted in France in 2021 based on the HAS opinion — this information is clearly stated." },
+    { "id": 6, "question": "How does emergency detection work?", "answer": "If you describe signs of a life-threatening emergency (chest pain, acute shortness of breath, stroke signs, suicidal thoughts), the chat immediately displays emergency numbers for your country and asks you to call now." }
+  ],
+  "footer_app_title": "Application",
+  "footer_company_title": "Legal",
+  "footer_chat": "Medical chat",
+  "footer_dossier": "My medical records",
+  "footer_rappels": "Reminders",
+  "footer_pricing": "Pricing",
+  "footer_mentions": "Legal notice",
+  "footer_cgu": "Terms of service",
+  "footer_privacy": "Privacy policy"
+} as const
+
+export default translations

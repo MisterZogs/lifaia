@@ -1,0 +1,50 @@
+const translations = {
+  "nav_features": "Funcionalidades",
+  "nav_pricing": "Precios",
+  "nav_dossier": "Historial médico",
+  "nav_rappels": "Recordatorios",
+  "badge": "Información de salud · IA · Europa",
+  "hero_title_1": "Tu asistente de",
+  "hero_title_highlight": "salud personal",
+  "hero_title_2": "",
+  "hero_subtitle": "Describe tus síntomas en lenguaje natural. Obtén información médica personalizada según tu perfil, país y antecedentes — en medicina moderna o alternativa.",
+  "hero_disclaimer": "Solo información — no reemplaza el consejo médico profesional.",
+  "cta_start": "Comenzar gratis →",
+  "cta_pricing": "Ver planes",
+  "proof_free": "✓ Gratis para empezar",
+  "proof_no_card": "✓ Sin tarjeta bancaria",
+  "proof_hosted": "✓ Datos alojados en Europa",
+  "features_title": "Todo lo que necesitas",
+  "features_subtitle": "Un asistente de salud completo, seguro y adaptado a tu perfil.",
+  "faq_title": "Preguntas frecuentes",
+  "features": [
+    { "name": "Chat médico con IA", "description": "Describe tus síntomas en lenguaje natural. La IA hace preguntas aclaratorias y adapta su respuesta a tu perfil.", "emoji": "💬", "size": "large" },
+    { "name": "8 enfoques médicos", "description": "Medicina moderna, osteopatía, fitoterapia, aromaterapia, naturopatía, homeopatía, nutrición, medicina china.", "emoji": "🏥", "size": "medium" },
+    { "name": "Historial médico", "description": "Antecedentes, alergias, tratamientos en curso, grupo sanguíneo — todo en un solo lugar.", "emoji": "📋", "size": "medium" },
+    { "name": "Detección de emergencias", "description": "Signos de ACV, dolor torácico, pensamientos suicidas → números de emergencia mostrados inmediatamente.", "emoji": "🚨", "size": "small" },
+    { "name": "Recordatorios y vacunas", "description": "Recordatorios de medicamentos, calendario de vacunación y chequeos adaptados a tu edad y país.", "emoji": "💊", "size": "small" },
+    { "name": "Fuentes oficiales", "description": "Las respuestas se basan en fuentes HAS, OMS y guías clínicas validadas (RAG).", "emoji": "📚", "size": "medium" },
+    { "name": "Datos seguros", "description": "Alojamiento certificado HDS en Francia. Cifrado AES-256 en reposo, TLS 1.3 en tránsito.", "emoji": "🔒", "size": "medium" },
+    { "name": "Perfil personalizado", "description": "Resultados adaptados a tu país, idioma, antecedentes y tratamientos en curso.", "emoji": "👤", "size": "small" },
+    { "name": "Perfiles familiares", "description": "Gestiona el seguimiento médico de toda la familia desde una sola cuenta.", "emoji": "👨‍👩‍👧", "size": "small" }
+  ],
+  "faqs": [
+    { "id": 1, "question": "¿Lifaia reemplaza a un médico?", "answer": "No. Lifaia es una herramienta de información médica, no un dispositivo médico. No realiza diagnósticos, no prescribe medicamentos y nunca reemplaza el consejo de un profesional de salud. Cada respuesta te invita a consultar a un médico." },
+    { "id": 2, "question": "¿Están protegidos mis datos de salud?", "answer": "Sí. Los datos de salud se alojan en Francia en un proveedor certificado HDS (Alojamiento de Datos de Salud), cifrados en reposo (AES-256) y en tránsito (TLS 1.3). No se revenden datos ni se usan para entrenar modelos." },
+    { "id": 3, "question": "¿Qué incluye el plan gratuito?", "answer": "El plan gratuito da acceso a 10 mensajes por día, la pestaña Medicina Moderna, historial médico completo y recordatorios de medicamentos y vacunas. Suficiente para probar la aplicación sin tarjeta bancaria." },
+    { "id": 4, "question": "¿Qué incluye el plan Premium?", "answer": "Mensajes ilimitados, acceso a las 8 pestañas de medicina (moderna, osteopatía, fitoterapia, aromaterapia, naturopatía, homeopatía, nutrición, medicina china), respuestas enriquecidas por RAG en fuentes oficiales HAS/OMS, y soporte prioritario." },
+    { "id": 5, "question": "¿Se presentan las medicinas alternativas como científicas?", "answer": "No. Cada pestaña de medicina alternativa muestra un aviso sobre el nivel de evidencia científica del enfoque. La homeopatía, por ejemplo, fue excluida del reembolso en Francia en 2021 según el dictamen de la HAS." },
+    { "id": 6, "question": "¿Cómo funciona la detección de emergencias?", "answer": "Si describes signos de emergencia vital (dolor torácico, dificultad respiratoria aguda, signos de ACV, pensamientos suicidas), el chat muestra inmediatamente los números de emergencia de tu país y te pide que llames ahora." }
+  ],
+  "footer_app_title": "Aplicación",
+  "footer_company_title": "Legal",
+  "footer_chat": "Chat médico",
+  "footer_dossier": "Mi historial médico",
+  "footer_rappels": "Recordatorios",
+  "footer_pricing": "Precios",
+  "footer_mentions": "Aviso legal",
+  "footer_cgu": "Términos de uso",
+  "footer_privacy": "Política de privacidad"
+} as const
+
+export default translations

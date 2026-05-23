@@ -1,0 +1,32 @@
+const translations = {
+  "login": "Se connecter",
+  "signup": "S'inscrire",
+  "onboarding_step": "Étape {{step}} / {{total}}",
+  "onboarding_profile_title": "Votre profil",
+  "onboarding_profile_subtitle": "Ces informations permettent à l'IA de personnaliser ses réponses.",
+  "onboarding_legal_title": "Informations légales",
+  "onboarding_legal_subtitle": "Dernière étape avant de commencer.",
+  "onboarding_country": "Pays de résidence",
+  "onboarding_country_hint": "Influence les numéros d'urgence, les médicaments et le calendrier vaccinal.",
+  "onboarding_sex_required": "Veuillez sélectionner votre sexe biologique.",
+  "onboarding_sex_hint": "Utilisé pour adapter les recommandations médicales (dépistages, dosages).",
+  "onboarding_continue": "Continuer →",
+  "onboarding_start": "Commencer",
+  "onboarding_back": "← Retour",
+  "onboarding_medical_warning_title": "⚠️ Avertissement médical",
+  "onboarding_medical_warning_text": "Lifaia est un outil d'information, pas un dispositif médical. Il ne pose aucun diagnostic et ne prescrit aucun traitement. Les informations fournies ne remplacent pas l'avis d'un professionnel de santé. En cas d'urgence, appelez le 15 (SAMU) ou le 112.",
+  "onboarding_medical_warning_check": "J'ai lu et compris cet avertissement médical",
+  "onboarding_cgu_check": "J'accepte les",
+  "onboarding_cgu_link": "Conditions Générales d'Utilisation",
+  "onboarding_cgu_and": "et la",
+  "onboarding_privacy_link": "politique de confidentialité",
+  "onboarding_cgu_required": "Vous devez accepter les Conditions Générales d'Utilisation.",
+  "onboarding_disclaimer_required": "Vous devez accepter l'avertissement médical.",
+  "onboarding_notif_title": "Restez informé",
+  "onboarding_notif_subtitle": "Activez les notifications pour ne rater aucun rappel médical",
+  "onboarding_email_notif": "Rappels par email (recommandé)",
+  "onboarding_push_notif": "Notifications push sur cet appareil",
+  "onboarding_finish": "Terminer"
+} as const
+
+export default translations

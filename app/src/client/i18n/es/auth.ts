@@ -1,0 +1,32 @@
+const translations = {
+  "login": "Iniciar sesión",
+  "signup": "Registrarse",
+  "onboarding_step": "Paso {{step}} / {{total}}",
+  "onboarding_profile_title": "Tu perfil",
+  "onboarding_profile_subtitle": "Esta información permite a la IA personalizar sus respuestas.",
+  "onboarding_legal_title": "Información legal",
+  "onboarding_legal_subtitle": "Último paso antes de comenzar.",
+  "onboarding_country": "País de residencia",
+  "onboarding_country_hint": "Afecta los números de emergencia, nombres de medicamentos y calendarios de vacunación.",
+  "onboarding_sex_required": "Por favor selecciona tu sexo biológico.",
+  "onboarding_sex_hint": "Usado para adaptar las recomendaciones médicas (cribados, dosis).",
+  "onboarding_continue": "Continuar →",
+  "onboarding_start": "Comenzar",
+  "onboarding_back": "← Volver",
+  "onboarding_medical_warning_title": "⚠️ Aviso médico",
+  "onboarding_medical_warning_text": "Lifaia es una herramienta de información, no un dispositivo médico. No realiza diagnósticos ni prescribe tratamientos. La información proporcionada no reemplaza el consejo de un profesional de salud. En caso de emergencia, llama al 112.",
+  "onboarding_medical_warning_check": "He leído y entendido este aviso médico",
+  "onboarding_cgu_check": "Acepto los",
+  "onboarding_cgu_link": "Términos de uso",
+  "onboarding_cgu_and": "y la",
+  "onboarding_privacy_link": "política de privacidad",
+  "onboarding_cgu_required": "Debes aceptar los Términos de uso.",
+  "onboarding_disclaimer_required": "Debes aceptar el aviso médico.",
+  "onboarding_notif_title": "Manténgase informado",
+  "onboarding_notif_subtitle": "Active las notificaciones para no perderse ningún recordatorio médico",
+  "onboarding_email_notif": "Recordatorios por email (recomendado)",
+  "onboarding_push_notif": "Notificaciones push en este dispositivo",
+  "onboarding_finish": "Finalizar"
+} as const
+
+export default translations
