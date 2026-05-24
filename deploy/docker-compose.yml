@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: mydoctoria
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: mydoctoria_prod
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mydoctoria"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  server:
+    image: mydoctoria-server:latest
+    restart: always
+    env_file: .env.production
+    environment:
+      DATABASE_URL: postgresql://mydoctoria:${DB_PASSWORD}@db:5432/mydoctoria_prod?sslmode=disable
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3001:3001"
+
+volumes:
+  postgres_data:

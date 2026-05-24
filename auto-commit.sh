@@ -1,5 +1,5 @@
 #!/bin/bash
-REPO="/Users/gaetan/Documents/Gaetan/2026-mac/IA/MyDoctorIA/MyDoctorIACode"
+REPO="/Users/gaetan/Documents/IA/MyDoctorIA"
 cd "$REPO" || exit 1
 
 # Rien à commiter si pas de changements sur les fichiers trackés
