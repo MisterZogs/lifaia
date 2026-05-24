@@ -69,7 +69,7 @@ app MyDoctorIA {
   emailSender: {
     // En développement : "Dummy" affiche les liens dans les logs serveur (pas d'envoi réel).
     // En production : SendGrid (clé SENDGRID_API_KEY dans les vars d'env).
-    provider: SMTP,
+    provider: Dummy,
     defaultFrom: {
       name: "Lifaia",
       email: "noreply@lifaia.com"

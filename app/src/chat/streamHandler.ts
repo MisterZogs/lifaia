@@ -91,18 +91,12 @@ export const chatStreamHandler = async (
       return
     }
 
-    // Vérification limite quotidienne pour les utilisateurs gratuits
+    // Vérification limite totale pour les utilisateurs gratuits
     if (!premium) {
-      const debutJour = new Date()
-      debutJour.setHours(0, 0, 0, 0)
-      const nbMessagesAujourdhui = await prisma.messageChat.count({
-        where: {
-          userId,
-          role: 'user',
-          createdAt: { gte: debutJour },
-        },
+      const nbMessagesTotal = await prisma.messageChat.count({
+        where: { userId, role: 'user' },
       })
-      if (nbMessagesAujourdhui >= LIMITE_MESSAGES_GRATUIT) {
+      if (nbMessagesTotal >= LIMITE_MESSAGES_GRATUIT) {
         envoyer({ error: 'DAILY_LIMIT_REACHED' })
         res.end()
         return

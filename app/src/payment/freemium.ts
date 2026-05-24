@@ -1,7 +1,7 @@
 import { SubscriptionStatus } from './plans'
 import type { OngletMedecine } from '../mistral/prompts'
 
-// Nombre maximum de messages par jour pour les utilisateurs gratuits
+// Nombre maximum de messages au total pour les utilisateurs gratuits (plan gratuit)
 export const LIMITE_MESSAGES_GRATUIT = 10
 
 // Onglets accessibles sans abonnement

@@ -7,7 +7,7 @@ const translations = {
   "placeholder": "Question pour l'onglet {{label}}...",
   "send": "Envoyer",
   "premium_required": "Cet onglet est réservé aux abonnés Premium. Consultez nos offres pour accéder à toutes les médecines.",
-  "daily_limit_reached": "Vous avez atteint la limite de {{limit}} messages par jour (plan gratuit). Passez à Premium pour des messages illimités.",
+  "daily_limit_reached": "Vous avez atteint la limite de {{limit}} messages au total (plan gratuit). Passez à Premium pour des messages illimités.",
   "premium_tab_title": "Fonctionnalité Premium — Voir les offres",
   "proof_level_high": "✅ Niveau de preuve élevé",
   "proof_level_moderate": "🔵 Niveau de preuve modéré",
