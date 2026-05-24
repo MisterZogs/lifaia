@@ -67,9 +67,9 @@ app MyDoctorIA {
   },
 
   emailSender: {
-    // En développement : "Dummy" affiche les liens dans les logs serveur (pas d'envoi réel).
-    // En production : SendGrid (clé SENDGRID_API_KEY dans les vars d'env).
-    provider: Dummy,
+    // En prod : variables SMTP_HOST, SMTP_PORT, SMTP_USERNAME, SMTP_PASSWORD dans les vars d'env.
+    // En dev local : mettre SMTP_HOST=localhost dans .env.server pour éviter les erreurs (emails ignorés).
+    provider: SMTP,
     defaultFrom: {
       name: "Lifaia",
       email: "noreply@lifaia.com"
