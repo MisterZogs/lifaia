@@ -1,0 +1,7 @@
+{
+  "name": "mydoctoria",
+  "private": true,
+  "scripts": {
+    "dev": "cd app && wasp start"
+  }
+}

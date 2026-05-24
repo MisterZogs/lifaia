@@ -273,7 +273,7 @@ export default function OnboardingPage() {
             {/* Date de naissance */}
             <div>
               <label htmlFor='dateNaissance' className='mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300'>
-                {tc('dob')} <span className='text-gray-400 font-normal'>({tc('optional')})</span>
+                {tc('dob')}
               </label>
               <input
                 id='dateNaissance'
