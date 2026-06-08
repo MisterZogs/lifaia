@@ -240,34 +240,12 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
   }
 
   return (
-    <div className='flex h-screen flex-col bg-gray-50 dark:bg-gray-900'>
-      {/* En-tête */}
-      <header className='border-b border-gray-200 bg-white px-4 py-3 dark:border-gray-700 dark:bg-gray-800'>
-        <div className='mx-auto flex max-w-4xl items-center justify-between'>
-          <h1 className='text-lg font-semibold text-gray-900 dark:text-white'>
-            Lifaia
-          </h1>
-          <div className='flex items-center gap-2'>
-            {/* Bouton Nouvelle conversation — discret, visible uniquement si l'historique n'est pas vide */}
-            {messages.length > 0 && (
-              <button
-                onClick={handleNouvelleConversation}
-                className='rounded-lg border border-gray-300 px-3 py-1 text-xs font-medium text-gray-500 hover:border-gray-400 hover:text-gray-700 dark:border-gray-600 dark:text-gray-400 dark:hover:border-gray-500 dark:hover:text-gray-300'
-              >
-                {t('new_conversation')}
-              </button>
-            )}
-            <span className='rounded-full bg-cyan-100 px-2 py-1 text-xs font-medium text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300'>
-              {t('header_badge')}
-            </span>
-          </div>
-        </div>
-      </header>
-
+    <div className='flex flex-1 flex-col bg-gray-50 dark:bg-gray-900'>
       {/* Onglets de médecines */}
-      <div className='border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800'>
+      <div className='border-b border-gray-200 bg-white shadow-sm dark:border-gray-600 dark:bg-gray-800 dark:shadow-none'>
         <div className='mx-auto max-w-4xl overflow-x-auto'>
-          <div className='flex min-w-max'>
+          <div className='flex min-w-max items-center'>
+            <div className='flex flex-1 min-w-max'>
             {ONGLETS.map((onglet) => {
               const accessible = isOngletAccessible(onglet.id, premium)
               return accessible ? (
@@ -276,8 +254,8 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
                   onClick={() => setOngletActif(onglet.id)}
                   className={`flex items-center gap-1.5 border-b-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
                     ongletActif === onglet.id
-                      ? 'border-cyan-600 text-cyan-600 dark:border-cyan-400 dark:text-cyan-400'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
+                      ? 'border-cyan-500 text-cyan-600 dark:border-cyan-400 dark:text-cyan-300'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white'
                   }`}
                 >
                   <span>{onglet.icone}</span>
@@ -296,6 +274,15 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
                 </Link>
               )
             })}
+            </div>
+            {messages.length > 0 && (
+              <button
+                onClick={handleNouvelleConversation}
+                className='ml-auto shrink-0 rounded-lg border border-gray-300 px-3 py-1 text-xs font-medium text-gray-500 hover:border-gray-400 hover:text-gray-700 dark:border-gray-600 dark:text-gray-400 dark:hover:border-gray-500 dark:hover:text-gray-300 mr-2'
+              >
+                {t('new_conversation')}
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -61,7 +61,7 @@ export default function App() {
 
   return (
     <>
-      <div className="bg-background text-foreground min-h-screen">
+      <div className="bg-background text-foreground flex min-h-screen flex-col">
         {isAdminDashboard ? (
           <Outlet />
         ) : (
@@ -69,7 +69,7 @@ export default function App() {
             {shouldDisplayAppNavBar && (
               <NavBar navigationItems={navigationItems} />
             )}
-            <div className="mx-auto max-w-(--breakpoint-2xl)">
+            <div className="mx-auto flex w-full flex-1 flex-col max-w-(--breakpoint-2xl)">
               <Outlet />
             </div>
           </>
