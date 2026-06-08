@@ -12,25 +12,29 @@ APP_DIR="$SCRIPT_DIR/../app"
 
 echo "=== 1. Build Wasp (production) ==="
 cd "$APP_DIR"
-wasp build
+REACT_APP_API_URL=https://api.lifaia.com wasp build
 
-echo "=== 2. Build image Docker du serveur (linux/amd64) ==="
+echo "=== 2. Build frontend (fichiers statiques) ==="
+cd "$APP_DIR"
+REACT_APP_API_URL=https://api.lifaia.com npx vite build
+
+echo "=== 3. Build image Docker du serveur (linux/amd64) ==="
 docker buildx build --platform linux/amd64 -t mydoctoria-server:latest .wasp/out/
 
-echo "=== 3. Export image Docker ==="
+echo "=== 4. Export image Docker ==="
 docker save mydoctoria-server:latest | gzip > /tmp/mydoctoria-server.tar.gz
 
-echo "=== 4. Envoi sur le VPS ==="
+echo "=== 5. Envoi sur le VPS ==="
 ssh "$VPS_HOST" "mkdir -p $DEPLOY_DIR"
 scp /tmp/mydoctoria-server.tar.gz "$VPS_HOST:$DEPLOY_DIR/"
 scp "$SCRIPT_DIR/docker-compose.yml" "$VPS_HOST:$DEPLOY_DIR/"
 # Envoie .env.production seulement s'il existe localement
 [ -f "$SCRIPT_DIR/.env.production" ] && scp "$SCRIPT_DIR/.env.production" "$VPS_HOST:$DEPLOY_DIR/.env.production"
 
-echo "=== 5. Déploiement des fichiers statiques ==="
+echo "=== 6. Déploiement des fichiers statiques ==="
 rsync -avz --delete "$APP_DIR/.wasp/out/web-app/build/" "$VPS_HOST:/var/www/lifaia/"
 
-echo "=== 6. Mise à jour nginx + démarrage des containers sur le VPS ==="
+echo "=== 7. Mise à jour nginx + démarrage des containers sur le VPS ==="
 ssh "$VPS_HOST" "
   cd $DEPLOY_DIR
   docker load < mydoctoria-server.tar.gz
