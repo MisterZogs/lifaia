@@ -59,7 +59,7 @@ export default function NavBar({
       <header
         className={cn(
           "sticky top-0 z-50 transition-all duration-300",
-          isScrolled && "top-4",
+          isScrolled && isLandingPage && "top-4",
         )}
       >
         <div
