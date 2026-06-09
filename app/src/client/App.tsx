@@ -24,6 +24,7 @@ import CookieConsentBanner from "./components/cookie-consent/Banner";
  */
 export default function App() {
   const location = useLocation();
+  const isChatPage = location.pathname === '/chat';
   const isMarketingPage = useMemo(() => {
     return (
       location.pathname === "/" ||
@@ -61,7 +62,7 @@ export default function App() {
 
   return (
     <>
-      <div className="bg-background text-foreground flex min-h-screen flex-col">
+      <div className={`bg-background text-foreground flex flex-col ${isChatPage ? 'h-dvh overflow-hidden' : 'min-h-screen'}`}>
         {isAdminDashboard ? (
           <Outlet />
         ) : (

@@ -240,7 +240,7 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
   }
 
   return (
-    <div className='flex flex-1 flex-col bg-gray-50 dark:bg-gray-900'>
+    <div className='flex flex-1 flex-col bg-gray-50 dark:bg-gray-900 min-h-0 overflow-hidden'>
       {/* Onglets de médecines */}
       <div className='border-b border-gray-200 bg-white shadow-sm dark:border-gray-600 dark:bg-gray-800 dark:shadow-none'>
         <div className='mx-auto max-w-4xl overflow-x-auto'>
