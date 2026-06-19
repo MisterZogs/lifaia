@@ -37,6 +37,14 @@ Onglet 5 : Naturopathie
 Onglet 6 : Nutrition
 Chaque onglet doit afficher un disclaimer sur le niveau de preuve scientifique
 Chaque onglet renvoie systématiquement vers un professionnel de santé
+Orientation vers les bons sites : après chaque réponse, afficher des liens contextuels vers des ressources fiables (Ameli.fr, HAS, Doctolib pour RDV, numéros d'urgence, Vidal grand public, etc.) — adaptés au pays de l'utilisateur
+
+Paragraphe "Avis d'autres patients" (sources forums)
+
+Afficher en section séparée des témoignages issus de forums publics (Doctissimo, Reddit santé, etc.)
+Présentation explicite : "Ces témoignages sont des expériences personnelles, non validées médicalement"
+Usage uniquement comme complément humain, jamais comme source de recommandation
+Ne pas utiliser les forums comme source RAG pour les conseils — uniquement pour l'angle "vécu patient"
 
 
 Rappels et notifications
