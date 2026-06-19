@@ -224,3 +224,59 @@ Quel est le statut HDS exact requis (un hébergeur certifié suffit-il ou faut-i
 Quelles formulations exactes peuvent être utilisées dans le chat pour les "recommandations médicamenteuses à valider" sans tomber dans l'exercice illégal de la médecine ?
 
 Aucun déploiement en production avant validation juridique de ces points.
+
+🏢 Segment B2B — Outils pour professionnels de santé
+
+Cible : médecins généralistes, spécialistes, cabinets de groupe, maisons de santé pluridisciplinaires.
+Positionnement : assistant de suivi patient pour le praticien, complémentaire à Doctolib (qui gère l'agenda, pas le contenu médical).
+
+Fonctionnalités B2B
+
+Le médecin crée un espace pour son cabinet et peut y enregistrer ses patients (avec consentement RGPD explicite du patient)
+Import des données patient depuis :
+  - Mon Espace Santé / DMP via API CPS (carte professionnelle de santé)
+  - Doctolib (si export disponible)
+  - Fichier Excel/CSV pour migration depuis d'autres outils
+Consultation du profil patient enrichi (antécédents, rappels, historique des chats patients — uniquement si le patient autorise le partage)
+Génération d'une fiche patient structurée à valider/annoter par le médecin (base pour la consultation)
+Alertes automatiques au praticien : rappels vaccins ou check-ups en retard pour ses patients
+
+Pricing B2B (à affiner)
+
+Freemium patient inchangé
+Cabinet : forfait mensuel par praticien (ex. 29-49€/mois/praticien) — à pricer en dessous de Doctolib (environ 170€/mois) pour être complémentaire et non concurrent
+Volume : remise à partir de 5 praticiens dans un même cabinet
+
+Démarchage
+
+Cible initiale : médecins généralistes installés, pédiatres, gériatres
+Canaux : LinkedIn, congrès médicaux (WONCA France, etc.), partenariat avec des syndicats médicaux (CSMF, MG France)
+Argument principal : réduire le temps perdu en consultation à recueillir les antécédents — le patient arrive avec une fiche structurée
+
+Contraintes B2B spécifiques
+
+Le praticien doit être identifié via RPPS (Répertoire Partagé des Professionnels de Santé)
+Accès aux données patient subordonné au consentement patient granulaire (peut autoriser son médecin traitant uniquement)
+Audit log renforcé : qui a accédé à quoi et quand (exigence HDS et responsabilité médicale)
+
+🔍 Concurrents et positionnement marché
+
+Principaux concurrents internationaux
+
+Ada Health (Allemagne) — référence mondiale du symptom checker, gratuit, médecine moderne uniquement. Lever de niche : notre approche multi-médecines + mémoire long terme.
+Buoy Health (USA, Harvard Innovation Labs) — très orienté orientation vers le bon praticien, pas de multi-médecines.
+K Health — symptom checker + téléconsultation intégrée. Modèle US, peu adapté au système français.
+Bevel (USA, 17,99$/mois) — le plus proche du "médecin personnel IA" : se connecte à Apple Santé, conseille mélatonine ou antalgiques. Référence à surveiller de près.
+Babylon Health (UK, en difficulté financière) — modèle de téléconsultation IA, en restructuration.
+Hedy AI — assistant temps réel pendant les consultations (côté médecin, pas patient).
+
+En France
+
+Doctolib — leader agenda/téléconsultation, intègre de l'IA en interne. N'est PAS un symptom checker grand public. Potentiel partenaire plus que concurrent.
+Peu de pure-players grand public sur le symptom checker en France → niche réelle.
+
+Notre différenciation
+
+Seule app combinant : symptom checker multi-médecines + mémoire patient long terme + aide au voyage + B2B médecins
+Hébergement HDS français dès le départ (avantage concurrentiel sur les acteurs US/UK)
+Approche "médecin personnel holistique" : la médecine moderne et les médecines complémentaires côte à côte, avec niveaux de preuve affichés honnêtement
