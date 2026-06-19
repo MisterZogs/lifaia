@@ -15,6 +15,8 @@ Carnet de vaccination
 Pays de résidence (paramétrable, influence les noms de médicaments, dosages, numéros d'urgence)
 Langue préférée
 Données stockées de façon chiffrée, hébergement HDS (Hébergeur de Données de Santé) en France/UE
+Aide au voyage : liste des vaccins recommandés par destination, médicaments à emporter selon le profil patient, numéros d'urgence locaux — généré à partir du profil existant
+Fiche médicale exportable (PDF structuré) : résumé des antécédents, allergies, traitements, vaccins — à imprimer et faire valider/annoter par le médecin traitant
 
 
 Chat de description de symptômes
