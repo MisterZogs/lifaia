@@ -68,6 +68,9 @@ Import/lecture d'ordonnances et comptes-rendus (OCR + parsing)
 Suivi de symptômes dans le temps (graphiques)
 Partage du dossier avec un médecin (export PDF chiffré, lien temporaire)
 Détection des interactions médicamenteuses
+Intégration Doctolib : prise de RDV directe depuis l'app (via API Doctolib si disponible, ou lien profond vers doctolib.fr avec spécialité pré-remplie)
+Import données depuis Mon Espace Santé (DMP — Dossier Médical Partagé) : ordonnances, comptes-rendus, historique
+Import depuis Excel/CSV : pour migration depuis d'autres outils ou saisie en masse
 
 🛡️ Contraintes légales et éthiques (non-négociables)
 Garde-fous absolus dans le code et les prompts
