@@ -127,11 +127,17 @@ Architecture IA
 
 RAG obligatoire : ne JAMAIS utiliser le LLM seul pour des réponses médicales. Construire une base vectorielle (Qdrant ou pgvector) contenant :
 
-Recommandations HAS (France)
-Base Vidal ou équivalent open (BCB, Thériaque)
-Recommandations OMS
-Calendrier vaccinal français
+Recommandations HAS (France) — disponibles en open data sur has-sante.fr
+Base Vidal ou équivalent open : le Vidal professionnel n'est pas librement accessible (abonnement payant), mais des alternatives open existent — BCB (Base de données Codage des médicaments, partiellement ouverte), Thériaque (CNHIM, accès institutionnel), base publique ANSM, base Médicaments de l'ANSM (open data data.ansm.sante.fr). Évaluer coût d'un accès Vidal API vs alternatives open source.
+Recommandations OMS — open access
+Calendrier vaccinal français (DGS) — open data
 Pour les médecines alternatives : sources reconnues de chaque tradition, présentées comme telles (pas comme preuve scientifique)
+Sources potentiellement à scanner/intégrer (contenu non disponible librement en ligne) :
+  - Livres de référence pharmacopée chinoise (ex. Materia Medica de Bensky)
+  - Charaka Samhita / Sushruta Samhita (ayurvéda) — certaines traductions en domaine public
+  - Pharmacopée française (ANSM) — partiellement accessible
+  - Monographies de plantes (ESCOP, Commission E allemande) — payantes, à acheter et scanner
+  - Formulaire National — disponible sur le site de l'ANSM
 
 
 Le LLM doit s'appuyer sur les documents retournés par le RAG et ne pas inventer de posologies ou de protocoles.
