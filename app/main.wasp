@@ -310,6 +310,13 @@ job rappelsNotifJob {
 //#endregion
 
 //#region Chat médical — streaming SSE
+// Namespace avec CORS explicite — obligatoire pour les api custom Wasp (pas de middleware par défaut)
+// Sans ça, le preflight OPTIONS échoue → "Failed to fetch" côté client
+apiNamespace chatApi {
+  middlewareConfigFn: import { chatApiMiddlewareFn } from "@src/chat/streamHandler",
+  path: "/api"
+}
+
 // Endpoint de streaming : retourne les tokens Mistral au fur et à mesure
 api chatStream {
   fn: import { chatStreamHandler } from "@src/chat/streamHandler",
