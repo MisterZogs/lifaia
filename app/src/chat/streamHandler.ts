@@ -9,6 +9,13 @@ import { rechercherDocuments, formaterContexteRAG } from '../rag/retrieval'
 import { isUserPremium, isOngletAccessible, LIMITE_MESSAGES_GRATUIT } from '../payment/freemium'
 import { mettreAJourMemoireSiNouvelleSession, obtenirResume } from './memory'
 
+// Middleware CORS pour le namespace /api — requis car les api custom Wasp n'ont pas de CORS par défaut.
+// Gère le preflight OPTIONS que le navigateur envoie avant chaque POST cross-origin.
+export const chatApiMiddlewareFn: MiddlewareConfigFn = (middlewareConfig) => {
+  middlewareConfig.set('cors', cors({ origin: config.allowedCORSOrigins }))
+  return middlewareConfig
+}
+
 const ONGLETS_VALIDES: OngletMedecine[] = [
   'moderne', 'osteopathie', 'phytotherapie', 'nutrition',
   'aromatherapie', 'homeopathie', 'naturopathie', 'chinoise',
