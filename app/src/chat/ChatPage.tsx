@@ -125,6 +125,7 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
     setMessages((prev) => [...prev, messageUtilisateur])
     setEnCours(true)
     setAttendPremierToken(true)
+    suivreBasRef.current = true // force le scroll vers le bas à l'envoi
 
     // Identifiant temporaire du message assistant en cours de streaming
     const idMessageStream = `stream-${Date.now()}`
