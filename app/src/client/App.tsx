@@ -70,7 +70,7 @@ export default function App() {
             {shouldDisplayAppNavBar && (
               <NavBar navigationItems={navigationItems} />
             )}
-            <div className="mx-auto flex w-full flex-1 flex-col max-w-(--breakpoint-2xl)">
+            <div className={`mx-auto flex w-full flex-1 flex-col max-w-(--breakpoint-2xl) ${isChatPage ? 'min-h-0' : ''}`}>
               <Outlet />
             </div>
           </>
