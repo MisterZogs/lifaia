@@ -68,6 +68,9 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
   const [erreur, setErreur] = useState<string | null>(null)
   const [limite, setLimite] = useState(30)
   const finListeRef = useRef<HTMLDivElement>(null)
+  const zoneMessagesRef = useRef<HTMLDivElement>(null)
+  // true = on suit le bas (scroll auto actif) ; false = l'utilisateur a scrollé vers le haut
+  const suivreBasRef = useRef(true)
 
   const { data: enfants } = useQuery(getEnfants)
 
@@ -85,10 +88,20 @@ const premium = user ? isUserPremium(user as { subscriptionStatus?: string | nul
     }
   }, [historique, ongletActif])
 
-  // Défilement automatique vers le bas
+  // Défilement automatique vers le bas — seulement si l'utilisateur est déjà en bas
   useEffect(() => {
-    finListeRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (suivreBasRef.current) {
+      finListeRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
   }, [messages])
+
+  function handleScroll() {
+    const zone = zoneMessagesRef.current
+    if (!zone) return
+    const distanceDuBas = zone.scrollHeight - zone.scrollTop - zone.clientHeight
+    // On reprend le suivi automatique si l'utilisateur est à moins de 80px du bas
+    suivreBasRef.current = distanceDuBas < 80
+  }
 
   const ongletConfig = ONGLETS.find((o) => o.id === ongletActif)!
 
