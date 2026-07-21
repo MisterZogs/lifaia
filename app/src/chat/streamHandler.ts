@@ -1,5 +1,6 @@
+import cors from 'cors'
 import type { Request, Response } from 'express'
-import { prisma } from 'wasp/server'
+import { prisma, config, type MiddlewareConfigFn } from 'wasp/server'
 import { getMistralClient, MODELES } from '../mistral/client'
 import { genererMessageUrgence } from '../mistral/urgences'
 import { getSystemPrompt, getMessageHorsChamp, calculerAge, type OngletMedecine, type ProfilPatient } from '../mistral/prompts'
